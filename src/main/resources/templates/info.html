@@ -10,7 +10,7 @@
     </head>
     <body>
         <div layout:fragment="content" class="container body-content">
-            <h2>Bus Information</h2>
+            <h2>Bus Information for postcode: <span th:text="${busInfo.postcode}"></span></h2>
             <div>
                 <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
             </div>
