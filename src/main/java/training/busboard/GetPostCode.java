@@ -9,8 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 public class GetPostCode {
 
-    public static Location getLongAndLatFromPostcode() {
-        String postcode = Utilities.requestString("Please enter a postcode").toUpperCase();
+    public static Location getLongAndLatFromPostcode(String postcode) {
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
         return client.target("https://api.postcodes.io/postcodes")
                 .path(postcode)

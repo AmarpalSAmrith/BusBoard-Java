@@ -13,7 +13,7 @@ public class Utilities {
         System.out.println(s.toString());
     }
 
-    public static int requestInt(String msg){
+    public static int requestInt(String msg) {
         while (true) {
             String requestNumber = requestString(msg);
             try {
@@ -24,10 +24,11 @@ public class Utilities {
         }
     }
 
-    public static String requestString(String msg){
+    public static String requestString(String msg) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(msg);
         System.out.print(">");
-        return scanner.next();
+        return scanner.nextLine();
     }
+
 }
