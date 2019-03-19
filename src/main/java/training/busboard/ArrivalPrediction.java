@@ -9,6 +9,7 @@ public class ArrivalPrediction {
     private String lineName;
     private String destinationName;
     private int timeToStation;
+    private String stationName;
 
     private ArrivalPrediction() { }
 
@@ -22,5 +23,9 @@ public class ArrivalPrediction {
 
     public int getTimeToStation() {
         return timeToStation;
+    }
+
+    public String getStationName() {
+        return stationName;
     }
 }
