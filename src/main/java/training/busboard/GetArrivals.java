@@ -16,7 +16,6 @@ public class GetArrivals {
                 .path(busStopCode)
                 .path("Arrivals")
                 .request(MediaType.APPLICATION_JSON_TYPE)
-                .get(new GenericType<List<ArrivalPrediction>>() {
-                });
+                .get(new GenericType<List<ArrivalPrediction>>() {});
     }
 }

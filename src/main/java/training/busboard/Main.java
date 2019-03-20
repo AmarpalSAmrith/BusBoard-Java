@@ -9,6 +9,7 @@ public class Main {
         Utilities.welcomeMsg("Hi lets find some busses :)");
 
         String postcode = Utilities.requestString("Please enter a postcode").toUpperCase().replaceAll(" ", "");
+
         Location longAndLat = GetPostCode.getLongAndLatFromPostcode(postcode);
 
         List<BusStop> nearestBusStopsToPostCode = GetBusStop.apiTFLStopPointsList(longAndLat.getLongitude(), longAndLat.getLatitude());

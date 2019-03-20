@@ -6,6 +6,7 @@
 <!--@thymesVar id="busInfo" type="training.busboard.web.BusInfo"-->
 
 <head>
+    <meta http-equiv="refresh" content="30">
     <title>Bus Information</title>
     <style>
         body {background: url("../images/big-ben-bus-england-45923.jpg");
@@ -50,7 +51,7 @@
             <tr th:each="arrival:${departureBoard.arrivals}">
                 <td th:text="${arrival.lineName}"></td>
                 <td th:text="${arrival.destinationName}"></td>
-                <td th:text="${arrival.timeToStation/60} + ' mins'"></td>
+                <td th:text="${(arrival.timeToStation+30)/60} + ' mins'"></td>
             </tr>
             </tbody>
         </table>
