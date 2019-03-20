@@ -3,35 +3,58 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 
-    <!--@thymesVar id="busInfo" type="training.busboard.web.BusInfo"-->
+<!--@thymesVar id="busInfo" type="training.busboard.web.BusInfo"-->
 
-    <head>
-        <title>Bus Information</title>
-    </head>
-    <body>
-        <div layout:fragment="content" class="container body-content">
-            <h2 style="font-size:40px;">Bus Information for postcode: <span th:text="${busInfo.postcode}"></span></h2>
-            <div th:each="departureBoard: ${busInfo.departureBoard}">
-                <h3 style="font-size:30px;">Bus Stop: <span th:text="${departureBoard.busStop.commonName}"></span></h3>
-                <table <!--border = "1" bordercolor = "green" bgcolor = "yellow" -->
-                       class="table table-bordered table-striped table-"
-                >
-                    <thead>
-                        <tr>
-                            <th>Line</th>
-                            <th>Destination</th>
-                            <th>Time to Arrival</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="arrival:${departureBoard.arrivals}">
-                            <td th:text="${arrival.lineName}"></td>
-                            <td th:text="${arrival.destinationName}"></td>
-                            <td th:text="${arrival.timeToStation/60} + ' mins'"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </body>
+<head>
+    <title>Bus Information</title>
+    <style>
+        #busstops {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #busstops td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #busstops tr:nth-child(even){background-color: #f2f2f2;}
+
+        #busstops tr:hover {background-color: #ddd;}
+
+        #busstops th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #bc2b2b;
+          color: white;
+        }
+
+    </style>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <h2 style="font-size:40px;">Bus Information for postcode: <span th:text="${busInfo.postcode}"></span></h2>
+    <div th:each="departureBoard: ${busInfo.departureBoard}">
+        <h3 style="font-size:30px;">Bus Stop: <span th:text="${departureBoard.busStop.commonName}"></span></h3>
+        <table id="busstops" class="table table-bordered table-striped table-">
+            <thead>
+            <tr>
+                <th>Line</th>
+                <th>Destination</th>
+                <th>Time to Arrival</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="arrival:${departureBoard.arrivals}">
+                <td th:text="${arrival.lineName}"></td>
+                <td th:text="${arrival.destinationName}"></td>
+                <td th:text="${arrival.timeToStation/60} + ' mins'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
 </html>
