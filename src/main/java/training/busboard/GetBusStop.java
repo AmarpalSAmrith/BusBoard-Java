@@ -25,13 +25,11 @@ public class GetBusStop {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-
     private static class BusStopStopPoints {
 
         private List<BusStop> stopPoints;
 
-        private BusStopStopPoints() {
-        }
+        private BusStopStopPoints() { }
 
         public List<BusStop> getStopPoints() {
             return stopPoints;

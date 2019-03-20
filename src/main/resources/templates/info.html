@@ -53,7 +53,8 @@
 <div layout:fragment="content" class="container body-content">
     <h2 style="font-size:40px;color: #ffffff">Bus Information for postcode: <span th:text="${busInfo.postcode.toUpperCase()}"></span></h2>
     <div th:each="departureBoard: ${busInfo.departureBoard}">
-        <h3 style="font-size:30px;color: #ffffff">Bus Stop: <span th:text="${departureBoard.busStop.commonName}"></span></h3>
+        <h3 style="font-size:30px;color: #ffffff">Bus Stop: <span th:text="${departureBoard.busStop.commonName} + ' (' + ${departureBoard.busStop.direction} + ')'"></span></h3>
+        <p style="font-size:15px;color: #ffffff">Distance to Bus Stop: <span th:text="${departureBoard.busStop.distance} + 'm'"></span></p>
         <table id="busstops" class="table table-bordered table-striped table-">
             <thead>
             <tr>

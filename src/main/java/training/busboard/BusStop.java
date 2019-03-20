@@ -2,12 +2,15 @@ package training.busboard;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+
 @JsonIgnoreProperties (ignoreUnknown = true)
 
 public class BusStop {
     private String naptanId;
     private String commonName;
-    private double distance;
+    private long distance;
+    private List<AdditionalProperty> additionalProperties;
 
     private BusStop() {}
 
@@ -19,7 +22,20 @@ public class BusStop {
         return commonName;
     }
 
+    public List<AdditionalProperty> getAdditionalProperties() {
+        return additionalProperties;
+    }
+
     public double getDistance() {
         return distance;
+    }
+
+    public String getDirection() {
+        for (AdditionalProperty additionalProperty : additionalProperties ){
+            if (additionalProperty.getCategory().equalsIgnoreCase("direction") && additionalProperty.getKey().equalsIgnoreCase("compasspoint")){
+                return additionalProperty.getValue();
+            }
+        }
+        return "Direction not known";
     }
 }
