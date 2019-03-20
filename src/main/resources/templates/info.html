@@ -10,7 +10,7 @@
     </head>
     <body>
         <div layout:fragment="content" class="container body-content">
-            <h2>Bus Information for postcode: <span th:text="${busInfo.postcode}"></span></h2>
+            <h2 style="font-size:200%;">Bus Information for postcode: <span th:text="${busInfo.postcode}"></span></h2>
             <table class="table table-bordered table-striped" th:each="departureBoard: ${busInfo.departureBoard}">
                 <thead>
                     <tr>
