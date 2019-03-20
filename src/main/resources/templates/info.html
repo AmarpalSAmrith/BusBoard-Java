@@ -11,11 +11,7 @@
     <body>
         <div layout:fragment="content" class="container body-content">
             <h2>Bus Information for postcode: <span th:text="${busInfo.postcode}"></span></h2>
-            <div>
-                <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
-                <p></p>
-            </div>
-            <table th:each="departureBoard: ${busInfo.departureBoard}">
+            <table class="table table-bordered table-striped" th:each="departureBoard: ${busInfo.departureBoard}">
                 <thead>
                     <tr>
                         <th>Line</th>
