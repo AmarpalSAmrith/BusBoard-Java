@@ -9,36 +9,51 @@
     <meta http-equiv="refresh" content="30">
     <title>Bus Information</title>
     <style>
-        body {background: url("../images/big-ben-bus-england-45923.jpg");
-         background-repeat: no-repeat;
-         background-size: cover;
-         background-position: center;}
+        body {
+            background: url("../images/big-ben-bus-england-45923.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
         #busstops {
-          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
         }
+
         #busstops td, #customers th {
-          border: 1px solid #ddd;
-          padding: 8px;
+            border: 1px solid #ddd;
+            padding: 8px;
         }
-        #busstops tr:nth-child(even){background-color: #f2f2f2;}
-        #busstops tr:hover {background-color: #ddd;}
+
+        #busstops tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #busstops tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        #busstops tr:hover {
+            background-color: #ddd;
+        }
+
         #busstops th {
-          padding-top: 12px;
-          padding-bottom: 12px;
-          text-align: left;
-          background-color: #bc2b2b;
-          color: white;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #bc2b2b;
+            color: white;
         }
     </style>
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
-    <h2 style="font-size:40px;">Bus Information for postcode: <span th:text="${busInfo.postcode}"></span></h2>
+    <h2 style="font-size:40px;color: #ffffff">Bus Information for postcode: <span th:text="${busInfo.postcode.toUpperCase()}"></span></h2>
     <div th:each="departureBoard: ${busInfo.departureBoard}">
-        <h3 style="font-size:30px;">Bus Stop: <span th:text="${departureBoard.busStop.commonName}"></span></h3>
+        <h3 style="font-size:30px;color: #ffffff">Bus Stop: <span th:text="${departureBoard.busStop.commonName}"></span></h3>
         <table id="busstops" class="table table-bordered table-striped table-">
             <thead>
             <tr>
