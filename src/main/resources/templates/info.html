@@ -13,7 +13,24 @@
             <h2>Bus Information for postcode: <span th:text="${busInfo.postcode}"></span></h2>
             <div>
                 <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
+                <p></p>
             </div>
+            <table th:each="departureBoard: ${busInfo.departureBoard}">
+                <thead>
+                    <tr>
+                        <th>Line</th>
+                        <th>Destination</th>
+                        <th>Time to Arrival</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="arrival:${departureBoard.arrivals}">
+                        <td th:text="${arrival.lineName}"></td>
+                        <td th:text="${arrival.destinationName}"></td>
+                        <td th:text="${arrival.timeToStation/60}"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>
