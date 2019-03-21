@@ -6,6 +6,7 @@
 <!--@thymesVar id="busInfo" type="training.busboard.web.BusInfo"-->
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bus Information</title>
     <style>
         body {
@@ -14,6 +15,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            padding-bottom: 15px;
         }
 
         #busstops {
@@ -41,7 +43,6 @@
             background-color: #dddddd;
         }
 
-
         #busstops th {
             padding-top: 12px;
             padding-bottom: 12px;
@@ -49,6 +50,7 @@
             background-color: #bc2b2b;
             color: white;
         }
+
     </style>
     <script>
         function myMaps() {
@@ -57,7 +59,7 @@
                 for (var i = 0; i < mapElements.length; i++) {
                     var mapProp = {
                         center: new google.maps.LatLng(parseFloat(mapElements[i].getAttribute("data-lat")), parseFloat(mapElements[i].getAttribute("data-lon"))),
-                        zoom: 18
+                        zoom: 17
                     };
                     var newMap = new google.maps.Map(mapElements[i], mapProp);
                     var marker = new google.maps.Marker({
@@ -74,10 +76,10 @@
 <body>
 
 <div layout:fragment="content" class="container body-content">
-    <h2 style="font-size:40px;color: #ffffff">Bus Information for postcode: <span th:text="${busInfo.postcode.toUpperCase()}"></span></h2>
+    <h2 style="font-size:40px;font-size:3vw;color: #ffffff">Bus Information for postcode: <span th:text="${busInfo.postcode.toUpperCase()}"></span></h2>
     <div th:each="departureBoard: ${busInfo.departureBoard}">
-        <h3 style="font-size:30px;color: #ffffff">Bus Stop: <span th:text="${departureBoard.busStop.commonName} + ' (' + ${departureBoard.busStop.direction} + ')'"></span></h3>
-        <p style="font-size:15px;color: #ffffff">Distance to Bus Stop: <span th:text="${departureBoard.busStop.distance} + 'm'"></span></p>
+        <h3 style="font-size:30px;font-size:2vw;color: #ffffff">Bus Stop: <span th:text="${departureBoard.busStop.commonName} + ' (' + ${departureBoard.busStop.direction} + ')'"></span></h3>
+        <p style="font-size:15px;font-size:2vw;color: #ffffff">Distance to Bus Stop: <span th:text="${departureBoard.busStop.distance} + 'm'"></span></p>
         <table id="busstops" class="table table-bordered table-striped table-">
             <thead>
             <tr>
@@ -94,8 +96,7 @@
             </tr>
             </tbody>
         </table>
-
-        <div class="googleMap" data-th-attr="data-lat=${departureBoard.busStop.lat}, data-lon=${departureBoard.busStop.lon}" style="width:75%;height:400px;"></div>
+        <div class="googleMap" data-th-attr="data-lat=${departureBoard.busStop.lat}, data-lon=${departureBoard.busStop.lon}" style="width:75%;height:200px;"></div>
     </div>
 
 </div>
