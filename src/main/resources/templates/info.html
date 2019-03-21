@@ -18,7 +18,7 @@
             padding-bottom: 15px;
         }
 
-        #busstops {
+        .busstops.really-busstops {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 50%;
@@ -26,29 +26,40 @@
             transition: width 1s;
         }
 
-        #busstops:hover {
+        .busstops.really-busstops:hover {
         width: 75%;
         }
 
-        #busstops td {
+        .busstops.really-busstops td {
             border: 1px solid #ddd;
             padding: 8px;
         }
 
-        #busstops tr:nth-child(even) {
+        .busstops.really-busstops tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
-        #busstops tr:nth-child(odd) {
+        .busstops.really-busstops tr:nth-child(odd) {
             background-color: #dddddd;
         }
 
-        #busstops th {
+        .busstops.really-busstops th {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
             background-color: #bc2b2b;
             color: white;
+        }
+
+        .googleMap {
+            width:50%;
+            height:175px;
+            -webkit-transition: width 1s;
+            transition: width 1s;
+        }
+
+        .googleMap:hover {
+        width: 75%;
         }
 
     </style>
@@ -70,17 +81,22 @@
                 }
             });
         }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUBx4-7O7VYHKxRyVPPb_xeLG9Yx4RFuk&callback=myMaps"></script>
 </head>
 <body>
 
 <div layout:fragment="content" class="container body-content">
-    <h2 style="font-size:40px;font-size:3vw;color: #ffffff">Bus Information for postcode: <span th:text="${busInfo.postcode.toUpperCase()}"></span></h2>
+    <h2 style="font-size:40px;font-size:3vw;color: #ffffff">Bus Information for postcode: <span
+            th:text="${busInfo.postcode.toUpperCase()}"></span></h2>
     <div th:each="departureBoard: ${busInfo.departureBoard}">
-        <h3 style="font-size:30px;font-size:2vw;color: #ffffff">Bus Stop: <span th:text="${departureBoard.busStop.commonName} + ' (' + ${departureBoard.busStop.direction} + ')'"></span></h3>
-        <p style="font-size:15px;font-size:2vw;color: #ffffff">Distance to Bus Stop: <span th:text="${departureBoard.busStop.distance} + 'm'"></span></p>
-        <table id="busstops" class="table table-bordered table-striped table-">
+        <h3 style="font-size:30px;font-size:2vw;color: #ffffff">Bus Stop: <span
+                th:text="${departureBoard.busStop.commonName} + ' (' + ${departureBoard.busStop.direction} + ')'"></span>
+        </h3>
+        <p style="font-size:15px;font-size:2vw;color: #ffffff">Distance to Bus Stop: <span
+                th:text="${departureBoard.busStop.distance} + 'm'"></span></p>
+        <table class="busstops really-busstops table table-bordered table-striped table-">
             <thead>
             <tr>
                 <th>Line</th>
@@ -96,7 +112,8 @@
             </tr>
             </tbody>
         </table>
-        <div class="googleMap" data-th-attr="data-lat=${departureBoard.busStop.lat}, data-lon=${departureBoard.busStop.lon}" style="width:75%;height:200px;"></div>
+        <div class="googleMap"
+             data-th-attr="data-lat=${departureBoard.busStop.lat}, data-lon=${departureBoard.busStop.lon}"></div>
     </div>
 
 </div>
