@@ -91,7 +91,7 @@
     <h2 style="font-size:40px;font-size:3vw;color: #ffffff">Bus Information for postcode: <span
             th:text="${busInfo.postcode.toUpperCase()}"></span></h2>
     <div th:each="departureBoard: ${busInfo.departureBoard}">
-        <h3 style="font-size:30px;font-size:2vw;color: #ffffff">Bus Stop: <span
+        <h3 style="font-size:30px;font-size:2vw;padding-top:7px;color: #ffffff">Bus Stop: <span
                 th:text="${departureBoard.busStop.commonName} + ' (' + ${departureBoard.busStop.direction} + ')'"></span>
         </h3>
         <p style="font-size:15px;font-size:2vw;color: #ffffff">Distance to Bus Stop: <span
