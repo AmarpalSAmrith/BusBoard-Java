@@ -10,6 +10,8 @@ public class BusStop {
     private String naptanId;
     private String commonName;
     private long distance;
+    private double lat;
+    private double lon;
     private List<AdditionalProperty> additionalProperties;
 
     private BusStop() {}
@@ -37,5 +39,13 @@ public class BusStop {
             }
         }
         return "Direction not known";
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLon() {
+        return lon;
     }
 }

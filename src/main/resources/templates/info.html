@@ -6,7 +6,6 @@
 <!--@thymesVar id="busInfo" type="training.busboard.web.BusInfo"-->
 
 <head>
-    <meta http-equiv="refresh" content="30">
     <title>Bus Information</title>
     <style>
         body {
@@ -51,8 +50,29 @@
             color: white;
         }
     </style>
+    <script>
+        function myMaps() {
+            document.addEventListener("DOMContentLoaded", function(e) {
+                var mapElements = document.getElementsByClassName("googleMap");
+                for (var i = 0; i < mapElements.length; i++) {
+                    var mapProp = {
+                        center: new google.maps.LatLng(parseFloat(mapElements[i].getAttribute("data-lat")), parseFloat(mapElements[i].getAttribute("data-lon"))),
+                        zoom: 18
+                    };
+                    var newMap = new google.maps.Map(mapElements[i], mapProp);
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(parseFloat(mapElements[i].getAttribute("data-lat")), parseFloat(mapElements[i].getAttribute("data-lon"))),
+                        animation: google.maps.Animation.BOUNCE
+                    });
+                    marker.setMap(newMap);
+                }
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUBx4-7O7VYHKxRyVPPb_xeLG9Yx4RFuk&callback=myMaps"></script>
 </head>
 <body>
+
 <div layout:fragment="content" class="container body-content">
     <h2 style="font-size:40px;color: #ffffff">Bus Information for postcode: <span th:text="${busInfo.postcode.toUpperCase()}"></span></h2>
     <div th:each="departureBoard: ${busInfo.departureBoard}">
@@ -74,7 +94,10 @@
             </tr>
             </tbody>
         </table>
+
+        <div class="googleMap" data-th-attr="data-lat=${departureBoard.busStop.lat}, data-lon=${departureBoard.busStop.lon}" style="width:75%;height:400px;"></div>
     </div>
+
 </div>
 </body>
 </html>
