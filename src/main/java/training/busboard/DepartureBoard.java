@@ -16,15 +16,7 @@ public class DepartureBoard {
         for (int i = 0; i < 2; i++) {
             List<ArrivalPrediction> arrivalPredictionList = GetArrivals.apiTFLBusses(nearestBusStopsToPostCode.get(i).getNaptanId());
             arrivalPredictionList.sort(Comparator.comparing(ArrivalPrediction::getTimeToStation));
-            List <ArrivalPrediction> max5ArrivalPredictionList = new ArrayList<>();
-
-            if (arrivalPredictionList.size() > 5) {
-                for (int j = 0; j < 5; j++) {
-                    max5ArrivalPredictionList.add(arrivalPredictionList.get(j));
-                }
-            }
-            
-            busStopInfos.add(new BusStopInfo(nearestBusStopsToPostCode.get(i),max5ArrivalPredictionList));
+            busStopInfos.add(new BusStopInfo(nearestBusStopsToPostCode.get(i), arrivalPredictionList.subList(0, Math.min(5, arrivalPredictionList.size()))));
         }
 
         return busStopInfos;
